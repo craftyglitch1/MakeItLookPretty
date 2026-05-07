@@ -7,7 +7,6 @@ namespace MakeItLookPretty
 
         Color windowColor;
         Brush windowBrush;
-        Bitmap screen;
 
         public Form1()
         {
@@ -16,13 +15,9 @@ namespace MakeItLookPretty
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            screen = new Bitmap(this.Width, this.Height);
-            this.DrawToBitmap(screen, new Rectangle(0, 0, this.Width, this.Height));
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             comBoxColor.Enabled = false;
-            double bright = getPixelBrightness(screen.GetPixel(0, 0));
-            MessageBox.Show(bright.ToString());
         }
 
         protected override void WndProc(ref Message m)
@@ -50,6 +45,7 @@ namespace MakeItLookPretty
 
         private void comBoxColor_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            double bright;
             switch (comBoxColor.SelectedIndex)
             {
                 case 0:
